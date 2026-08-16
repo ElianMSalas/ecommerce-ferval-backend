@@ -14,7 +14,6 @@ API REST para el e-commerce de la ferretería **Ferval**, construida con [NestJS
 - [Ejecución](#ejecución)
 - [Documentación de la API (Swagger)](#documentación-de-la-api-swagger)
 - [Endpoints principales](#endpoints-principales)
-- [Testing](#testing)
 - [Scripts disponibles](#scripts-disponibles)
 - [Estructura del proyecto](#estructura-del-proyecto)
 
@@ -27,7 +26,6 @@ API REST para el e-commerce de la ferretería **Ferval**, construida con [NestJS
 - **Validación:** `class-validator` / `class-transformer`
 - **Documentación de API:** `@nestjs/swagger`
 - **Pagos:** `transbank-sdk` (Webpay Plus)
-- **Testing:** Jest + Supertest
 
 ## Arquitectura y módulos
 
@@ -196,22 +194,6 @@ Todas las rutas están bajo el prefijo `/api`. Los endpoints marcados con 🔒 r
 | GET | `/payments/return` | Retorno GET de Webpay tras el pago (confirma la transacción) |
 | POST | `/payments/return` | Retorno POST de Webpay tras el pago (confirma la transacción) |
 
-## Testing
-
-```bash
-# Tests unitarios
-npm run test
-
-# Tests unitarios en modo watch
-npm run test:watch
-
-# Cobertura
-npm run test:cov
-
-# Tests end-to-end
-npm run test:e2e
-```
-
 ## Scripts disponibles
 
 | Script | Descripción |
@@ -223,8 +205,6 @@ npm run test:e2e
 | `npm run start:prod` | Ejecuta el build compilado (`dist/main`) |
 | `npm run lint` | Ejecuta ESLint con autofix |
 | `npm run format` | Formatea el código con Prettier |
-| `npm run test` | Ejecuta los tests unitarios |
-| `npm run test:e2e` | Ejecuta los tests end-to-end |
 
 ## Estructura del proyecto
 
