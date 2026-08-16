@@ -68,7 +68,7 @@ Todos los montos monetarios se almacenan como enteros (unidad mínima de moneda,
 ## Instalación
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/ElianMSalas/ecommerce-ferval-backend
 cd ecommerce-ferval-backend
 npm install
 ```
