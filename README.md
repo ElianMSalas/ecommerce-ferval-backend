@@ -36,7 +36,7 @@ El proyecto sigue la estructura modular estándar de NestJS. Cada dominio de neg
 | `auth` | Registro, login, emisión/validación de JWT, guards de autenticación y roles |
 | `users` | Entidad de usuario (consumida principalmente por `auth`) |
 | `products` | CRUD y búsqueda de productos, categorías y marcas |
-| `inventory` | Stock por producto, compras de stock, ajustes manuales y movimientos de inventario |
+| `inventory` | Stock por producto, compras de stock, ajustes manuales y movimientos de inventario (acceso restringido a administradores) |
 | `cart` | Carrito de compras por usuario autenticado |
 | `addresses` | Direcciones de despacho del usuario |
 | `orders` | Creación y consulta de órdenes |
@@ -154,13 +154,15 @@ Todas las rutas están bajo el prefijo `/api`. Los endpoints marcados con 🔒 r
 | POST | `/products` 🔒👤 | Crear producto |
 | PATCH | `/products/:id` 🔒👤 | Actualizar producto |
 
-### Inventory (`/api/inventory`)
+### Inventory (`/api/inventory`) — todos los endpoints 🔒👤
 | Método | Ruta | Descripción |
 |---|---|---|
 | GET | `/inventory/:productId` | Ver stock de un producto |
 | GET | `/inventory/:productId/movements` | Historial de movimientos de stock |
 | POST | `/inventory/:productId/purchase` | Registrar ingreso de stock (compra) |
 | POST | `/inventory/:productId/adjust` | Ajuste manual de stock |
+
+> Todo el módulo requiere autenticación y rol `ADMIN`; no está expuesto a usuarios finales.
 
 ### Cart (`/api/cart`) — todos los endpoints 🔒
 | Método | Ruta | Descripción |
@@ -218,7 +220,7 @@ Todas las rutas están bajo el prefijo `/api`. Los endpoints marcados con 🔒 r
 │   ├── auth/                 # Registro, login, JWT, guards y decoradores
 │   ├── users/                # Módulo de usuarios
 │   ├── products/              # Catálogo de productos
-│   ├── inventory/             # Stock y movimientos de inventario
+│   ├── inventory/             # Stock y movimientos de inventario (protegido, solo ADMIN)
 │   ├── cart/                  # Carrito de compras
 │   ├── addresses/             # Direcciones de despacho
 │   ├── orders/                # Órdenes de compra
