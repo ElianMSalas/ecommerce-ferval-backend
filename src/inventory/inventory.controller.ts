@@ -4,13 +4,29 @@ import {
   Get,
   Param,
   Post,
+  UseGuards,
 } from '@nestjs/common';
+
+import {
+  ApiBearerAuth,
+  ApiTags,
+} from '@nestjs/swagger';
+
+import { UserRole } from '@prisma/client';
+
+import { JwtAuthGuard } from '../auth/guards/jwtauth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
 
 import { InventoryService } from './inventory.service';
 
 import { AdjustInventoryDto } from './dto/adjustinventory.dto';
 import { PurchaseInventoryDto } from './dto/purchaseinventory.dto';
 
+@ApiTags('Inventory')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(UserRole.ADMIN)
 @Controller('inventory')
 export class InventoryController {
   constructor(

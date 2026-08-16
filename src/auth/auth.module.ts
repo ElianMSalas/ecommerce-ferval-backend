@@ -40,12 +40,17 @@ import { RolesGuard } from './guards/roles.guard';
             'JWT_SECRET no está definida',
           );
         }
+        
+        const expiresIn =
+          configService.get<string>(
+            'JWT_EXPIRES_IN',
+          ) ?? '1d';
 
         return {
           secret,
 
           signOptions: {
-            expiresIn: '1d',
+            expiresIn,
           },
         };
       },

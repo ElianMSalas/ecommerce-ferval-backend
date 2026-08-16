@@ -236,6 +236,19 @@ export class PaymentsService {
           payment.order.orderNumber,
       };
     }
+    if (
+      payment.status === 'REJECTED' ||
+      payment.status === 'CANCELLED' ||
+      payment.status === 'REFUNDED'
+    ) {
+      return {
+        success: false,
+        message: 'El pago ya fue procesado y no fue aprobado',
+        status: payment.status,
+        orderId: payment.orderId,
+        orderNumber: payment.order.orderNumber,
+      };
+    }
 
     // ----------------------------------------------------------
     // Commit en Transbank
